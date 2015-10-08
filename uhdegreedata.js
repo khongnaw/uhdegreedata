@@ -11,7 +11,7 @@
  * Provides a small set of records from the UH dataset
  * @type {string}
  */
-var testdata = uhdata.slice(0,2);
+//var testdata = uhdata.slice(0,2);
 
 /**
  * This function returns the total number of degrees awarded in the uhdata set
@@ -19,6 +19,15 @@ var testdata = uhdata.slice(0,2);
  * @returns The total number of degrees
  */
 function totalDegrees(data) {
+  //Check if data set contains element with no Awards
+  if(!_.every(data,function(val){return val.hasOwnProperty("AWARDS");})){
+    throw new TypeError("ERROR: missing AWARDS field");
+  }
+
+  //Check if data set contains non number Awards
+  if(!_.every(data,function(val){return !(isNaN(val["AWARDS"]));})){
+    throw new TypeError("ERROR: AWARDS field contains non number");
+  }
   return _.reduce(data, function (memo, value) {
     return memo + value["AWARDS"];
   }, 0);
