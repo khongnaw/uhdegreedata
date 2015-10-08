@@ -1,7 +1,7 @@
 
 /*global uhdata, totalDegrees*/
 
-describe("position", function() {
+describe("totalDegrees", function() {
   var testdata = uhdata.slice(0,2);
   var testdata2 = uhdata.slice(0,2);
   testdata2.push({foo:"hi"});
